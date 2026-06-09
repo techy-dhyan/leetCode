@@ -9,7 +9,6 @@ Example 2:
 
 Input: numRows = 1
 Output: [[1]]
-'''
 class Solution(object):
     def plusOne(self, digits):
         n = len(digits)
@@ -19,3 +18,19 @@ class Solution(object):
                 return digits
             digits[i] = 0  
         return [1] + digits
+'''
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        l = [[1]]
+        for i in range(1,numRows):
+            lst = [1]
+            for j in range(i-1):
+                lst.append(l[i-1][j] + l[i-1][j+1])
+            lst.append(1)
+            l.append(lst)
+        return l
+    
