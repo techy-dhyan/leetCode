@@ -1,18 +1,13 @@
 class Solution {
-    public int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums);
-        for (int i = 0;i<nums.length;i++){
-            int left = i + 1;
-            int right = nums.length - 1;
-            int sum = nums[i] + nums[left] + nums[right];
+    public int pivotIndex(int[] nums) {
+        int sum = 0;
+        for (int i : nums){sum+=i;}
 
-            if (sum < target){
-                left++;
-            }
-            else{
-                right--;
-            }
-        }
-        return sum;
+        int left = 0;
+        for(int i = 0;i<nums.length;i++){
+            int right = sum - left - nums[i];
+            if (left == right){return i;}
+            left += nums[i];
+        }return -1;
     }
 }
